@@ -6,7 +6,7 @@ export const useUser = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+const token = localStorage.getItem("authToken"); 
     if (!token) {
       setLoading(false);
       return;

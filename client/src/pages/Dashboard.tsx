@@ -8,14 +8,17 @@ const Dashboard = () => {
   const { user, loading } = useUser();
   const navigate = useNavigate();
 
- useEffect(() => {
-  const params = new URLSearchParams(window.location.search);
-  const token = params.get("token");
-  if (token) {
-    localStorage.setItem("token", token);
-    window.history.replaceState({}, document.title, "/dashboard");
-  }
-}, []);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+
+    if (token) {
+      // Save it in localStorage or cookie
+      localStorage.setItem("authToken", token);
+      // Optionally remove it from URL
+      window.history.replaceState(null, "", "/dashboard");
+    }
+  }, []);
 
   if (loading) {
     return (
