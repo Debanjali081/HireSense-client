@@ -2,7 +2,7 @@ import { LogIn, Chrome } from 'lucide-react';
 
 const LoginButton = () => {
   const handleGoogleLogin = () => {
-    window.location.href = 'https://hire-sense-client-faxy-wheat.vercel.app/api/auth/google';
+    window.location.href = 'https://hiresense-server.onrender.com/api/auth/google';
   };
 
   return (
