@@ -6,6 +6,9 @@ import { User, LogOut, Settings, Bell, Brain } from "lucide-react";
 const Dashboard = () => {
   const { user, loading } = useUser();
   const navigate = useNavigate();
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get("token");
+  if (token) localStorage.setItem("token", token);
 
   if (loading) {
     return (
