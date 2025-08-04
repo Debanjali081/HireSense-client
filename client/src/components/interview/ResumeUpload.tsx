@@ -225,7 +225,7 @@ const ResumeUpload = () => {
         });
       }, 200);
 
-      const res = await axios.post('https://hire-sense-client-faxy-wheat.vercel.app/api/resume/upload', formData, {
+      const res = await axios.post('https://hiresense-server.onrender.com/api/resume/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
