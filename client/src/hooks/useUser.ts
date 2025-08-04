@@ -12,8 +12,20 @@ export const useUser = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const token = localStorage.getItem('token'); // Get token from storage
+
+    if (!token) {
+      setUser(null);
+      setLoading(false);
+      return;
+    }
+
     axios
-      .get('https://hiresense-server.onrender.com/api/user/me', { withCredentials: true })
+      .get('https://hiresense-server.onrender.com/api/user/me', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         setUser(res.data);
       })
