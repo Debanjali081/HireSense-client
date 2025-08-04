@@ -13,7 +13,7 @@ export const useUser = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/user/me', { withCredentials: true })
+      .get('https://hire-sense-client-faxy-wheat.vercel.app/api/user/me', { withCredentials: true })
       .then((res) => {
         setUser(res.data);
       })
