@@ -1,8 +1,5 @@
 {
   "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "https://hiresense-server.onrender.com/api/:path*"
-    }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
