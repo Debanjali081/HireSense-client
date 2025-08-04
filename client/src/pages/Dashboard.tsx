@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useUser } from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 import ResumeUpload from "../components/interview/ResumeUpload";
@@ -6,9 +7,15 @@ import { User, LogOut, Settings, Bell, Brain } from "lucide-react";
 const Dashboard = () => {
   const { user, loading } = useUser();
   const navigate = useNavigate();
-  const urlParams = new URLSearchParams(window.location.search);
-  const token = urlParams.get("token");
-  if (token) localStorage.setItem("token", token);
+
+ useEffect(() => {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get("token");
+  if (token) {
+    localStorage.setItem("token", token);
+    window.history.replaceState({}, document.title, "/dashboard");
+  }
+}, []);
 
   if (loading) {
     return (
