@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { 
   Brain, 
   Mic, 
@@ -26,6 +26,19 @@ function Home() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const handleGetStarted = () => {
+    navigate('/login');
+  };
+
+  const handleStartPracticing = () => {
+    navigate('/practice');
+  };
+
+  const handleWatchDemo = () => {
+    // You can implement demo functionality here
+    console.log('Watch demo clicked');
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -46,7 +59,7 @@ function Home() {
               <a href="#features" className="text-gray-600 hover:text-blue-600 transition-colors">Features</a>
               <a href="#how-it-works" className="text-gray-600 hover:text-blue-600 transition-colors">How it Works</a>
               <a href="#pricing" className="text-gray-600 hover:text-blue-600 transition-colors">Pricing</a>
-              <button onClick={() => navigate('/login')} className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">
+              <button onClick={handleGetStarted} className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">
                 Get Started
               </button>
             </nav>
@@ -90,7 +103,13 @@ function Home() {
                 >
                   Pricing
                 </a>
-                <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 mx-4">
+                <button 
+                  onClick={() => {
+                    handleGetStarted();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 mx-4"
+                >
                   Get Started
                 </button>
               </nav>
@@ -120,11 +139,17 @@ function Home() {
                 Upload your resume, choose your role, and let our intelligent system guide you to success.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200">
+                <button 
+                  onClick={handleStartPracticing}
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
+                >
                   Start Practicing Now
                   <ArrowRight className="w-5 h-5 ml-2 inline" />
                 </button>
-                <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold hover:border-blue-500 hover:text-blue-600 transition-all duration-200">
+                <button 
+                  onClick={handleWatchDemo}
+                  className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold hover:border-blue-500 hover:text-blue-600 transition-all duration-200"
+                >
                   <Play className="w-5 h-5 mr-2 inline" />
                   Watch Demo
                 </button>
@@ -340,7 +365,10 @@ function Home() {
             Join thousands of successful candidates who have improved their interview skills with HireSense
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-gray-900 px-8 py-4 rounded-full font-semibold hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200">
+            <button 
+              onClick={handleGetStarted}
+              className="bg-white text-gray-900 px-8 py-4 rounded-full font-semibold hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
+            >
               Start Free Trial
               <ArrowRight className="w-5 h-5 ml-2 inline" />
             </button>
