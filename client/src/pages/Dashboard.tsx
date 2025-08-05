@@ -2,10 +2,21 @@ import { useUser } from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 import ResumeUpload from "../components/interview/ResumeUpload";
 import { User, LogOut, Settings, Bell, Brain } from "lucide-react";
+import axiosInstance from "../config/axiosConfig";
 
 const Dashboard = () => {
   const { user, loading } = useUser();
   const navigate = useNavigate();
+
+  const handleLogout = async () => {
+  try {
+    await axiosInstance.post('/api/auth/logout');
+    // Force full page reload to clear all session state
+    window.location.href = '/login';
+  } catch (err) {
+    console.error('Logout failed:', err);
+  }
+};
 
   if (loading) {
     return (
@@ -81,10 +92,7 @@ const Dashboard = () => {
                 </span>
               </div>
               <button
-                onClick={() => {
-                  // Handle logout logic
-                  navigate("/login");
-                }}
+                onClick={handleLogout}
                 className="p-2 text-gray-600 hover:text-red-600 transition-colors duration-200"
               >
                 <LogOut className="w-5 h-5" />

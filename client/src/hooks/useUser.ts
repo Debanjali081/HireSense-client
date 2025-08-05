@@ -1,26 +1,26 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-
-interface User {
-  name: string;
-  email: string;
-  photo: string;
-}
+import axiosInstance from '../config/axiosConfig'; // Use configured instance
 
 export const useUser = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get('https://hiresense-server.onrender.com/api/user/me', { withCredentials: true })
-      .then((res) => {
+    const fetchUser = async () => {
+      try {
+        // Add cache busting to ensure fresh session check
+        const res = await axiosInstance.get('/api/user/me', {
+          params: { _: Date.now() }
+        });
         setUser(res.data);
-      })
-      .catch(() => {
+      } catch (err) {
         setUser(null);
-      })
-      .finally(() => setLoading(false));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
   }, []);
 
   return { user, loading };
