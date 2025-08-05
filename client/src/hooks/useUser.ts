@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../config/axiosConfig'; // Use configured instance
+import type { User } from '../types/User';
 
 export const useUser = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -13,7 +14,7 @@ export const useUser = () => {
           params: { _: Date.now() }
         });
         setUser(res.data);
-      } catch (err) {
+      } catch {
         setUser(null);
       } finally {
         setLoading(false);
